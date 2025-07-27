@@ -125,22 +125,22 @@ document.addEventListener("DOMContentLoaded", function () {
         const aprobadasIntermedio = contarAprobadasHasta(planEstudio.tituloIntermedio.anio);
         const porcentajeIntermedio = ((aprobadasIntermedio / materiasIntermedio) * 100).toFixed(2);
 
+        // ✅ NUEVO: progreso total de la carrera (solo aprobadas)
+        const porcentajeTotalCarrera = ((aprobadas / totalMaterias) * 100).toFixed(2);
+
+        // Actualizar barras
         document.getElementById("barra-aprobadas").style.width = `${porcentajeAprobadas}%`;
         document.getElementById("barra-total").style.width = `${porcentajeCompletadas}%`;
         document.getElementById("barra-intermedio").style.width = `${porcentajeIntermedio}%`;
+        document.getElementById("barra-total-carrera").style.width = `${porcentajeTotalCarrera}%`;
+
+        // Actualizar texto
         document.getElementById("porcentaje-aprobadas").textContent = `${porcentajeAprobadas}%`;
         document.getElementById("porcentaje-total").textContent = `${porcentajeCompletadas}%`;
         document.getElementById("porcentaje-intermedio").textContent = `${porcentajeIntermedio}%`;
-
-
-        document.getElementById("detalles-progreso").innerHTML = `
-            <p>Total materias: ${totalMaterias}</p>
-            <p>Aprobadas: ${aprobadas} | Regulares: ${regulares}</p>
-            <p>Avance (Aprobadas): ${porcentajeAprobadas}%</p>
-            <p>Avance total (Aprobadas + Regulares): ${porcentajeCompletadas}%</p>
-            <p>Avance Título Intermedio: ${porcentajeIntermedio}%</p>
-        `;
+        document.getElementById("porcentaje-total-carrera").textContent = `${porcentajeTotalCarrera}%`;
     }
+
 
     function contarMateriasHasta(anioLimite) {
         let count = 0;
@@ -177,7 +177,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 });
 
 
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
     const header = document.querySelector('header');
     if (window.scrollY > 10) {
         header.classList.add('scrolled');

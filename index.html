@@ -24,11 +24,16 @@
     <h2 id="inicio">Incio</h2>
 
 
-    <main >
+    <main>
         <div id="plan"></div>
 
         <section id="progreso">
             <h2>Progreso</h2>
+            <p class="explicacion">
+                Los porcentajes reflejan el avance basado en la cantidad de materias aprobadas, regulares o del título
+                intermedio.
+                No incluyen materias optativas ni otras variables.
+            </p>
 
             <div class="progreso-item">
                 <span>Total Aprobadas:</span>
@@ -55,12 +60,23 @@
             </div>
 
             <div id="detalles-progreso"></div>
+
+            <div class="progreso-item">
+                <span>Avance Total de la Carrera:</span>
+                <span id="porcentaje-total-carrera">0%</span>
+            </div>
+            <div class="barra">
+                <div id="barra-total-carrera"></div>
+            </div>
+
         </section>
 
     </main>
 
     <footer>
         <p>&copy; 2025 Seguimiento de Carrera</p>
+        <p>Desarrollado por Ariel </p>
+        <a href="https://instagram.com/alegreariel666" target="_blank">Instagram</a>
     </footer>
 
     <script src="/js/plan.js"></script>
