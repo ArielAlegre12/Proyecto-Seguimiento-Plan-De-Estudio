@@ -82,6 +82,8 @@ select:focus {
   margin-top: 4px;
 }
 
+
+
 /* Sección progreso */
 #progreso {
   margin-top: 40px;
@@ -91,10 +93,11 @@ select:focus {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
-#progreso h2 {
+h2 {
   margin-bottom: 15px;
   color: #004aad;
 }
+
 
 /* Barras de progreso */
 .barra {
@@ -150,6 +153,11 @@ footer {
   header h1 {
     font-size: 1.6rem;
   }
+ 
+  header h1 {
+  color: white; /* Cambia el color del texto a blanco */
+}
+
 
   .cuatrimestre {
     padding: 15px;
