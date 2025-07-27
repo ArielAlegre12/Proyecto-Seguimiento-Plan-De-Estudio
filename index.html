@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguimiento de Carrera</title>
+    <link rel="stylesheet" href="/css/styleGeneral.css">
+    <link rel="stylesheet" href="/css/styleNav.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <h1>Seguimiento de Carrera</h1>
+            <nav class="navbar">
+                <ul class="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#progreso">Progreso</a></li>
+                </ul>
+                <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+            </nav>
+        </div>
+    </header>
+
+
+    <main id="inicio">
+        <div id="plan"></div>
+
+        <section id="progreso">
+            <h2>Progreso</h2>
+
+            <div class="progreso-item">
+                <span>Total Aprobadas:</span>
+                <span id="porcentaje-aprobadas">0%</span>
+            </div>
+            <div class="barra">
+                <div id="barra-aprobadas"></div>
+            </div>
+
+            <div class="progreso-item">
+                <span>Total Completadas (Aprobadas + Regulares):</span>
+                <span id="porcentaje-total">0%</span>
+            </div>
+            <div class="barra">
+                <div id="barra-total"></div>
+            </div>
+
+            <div class="progreso-item">
+                <span>Avance Título Intermedio:</span>
+                <span id="porcentaje-intermedio">0%</span>
+            </div>
+            <div class="barra">
+                <div id="barra-intermedio"></div>
+            </div>
+
+            <div id="detalles-progreso"></div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Seguimiento de Carrera</p>
+    </footer>
+
+    <script src="/js/plan.js"></script>
+    <script src="/js/script.js"></script>
+    <script>
+        // Toggle menú en móviles
+        document.getElementById('menu-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>

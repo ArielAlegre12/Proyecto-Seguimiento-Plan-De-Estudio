@@ -1,0 +1,177 @@
+/* Fuente y fondo */
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  background: linear-gradient(135deg, #f0f4ff, #e6f7ff);
+  color: #333;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* Encabezado */
+header h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #004aad;
+  font-size: 2rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Secciones de cada año */
+.anio {
+  margin-bottom: 30px;
+}
+
+/* Caja de cuatrimestre */
+.cuatrimestre {
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border-left: 6px solid #007bff;
+}
+
+.cuatrimestre h3 {
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+/* Materia */
+.materia {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.materia > span {
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Selector */
+select {
+  max-width: 250px;
+  padding: 8px;
+  font-size: 14px;
+  border: 2px solid #007bff;
+  border-radius: 6px;
+  background: #f9f9f9;
+  color: #333;
+  cursor: pointer;
+}
+
+select:focus {
+  outline: none;
+  border-color: #004aad;
+}
+
+/* Mensajes de error */
+.mensaje-error {
+  min-height: 18px;
+  visibility: hidden;
+  color: #d9534f;
+  font-size: 0.85em;
+  font-weight: bold;
+  margin-top: 4px;
+}
+
+/* Sección progreso */
+#progreso {
+  margin-top: 40px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+#progreso h2 {
+  margin-bottom: 15px;
+  color: #004aad;
+}
+
+/* Barras de progreso */
+.barra {
+  background: #e0e0e0;
+  border-radius: 12px;
+  height: 20px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+#barra-aprobadas {
+  background: #28a745;
+  height: 100%;
+  width: 0;
+  transition: width 0.6s ease;
+}
+
+#barra-total {
+  background: #007bff;
+  height: 100%;
+  width: 0;
+  transition: width 0.6s ease;
+}
+
+#barra-intermedio {
+  background: #ff9800;
+  height: 100%;
+  width: 0;
+  transition: width 0.6s ease;
+}
+
+/* Texto progreso */
+#detalles-progreso {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* ✅ Responsividad para móviles */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  header h1 {
+    font-size: 1.6rem;
+  }
+
+  .cuatrimestre {
+    padding: 15px;
+  }
+
+  select {
+    max-width: 100%;
+  }
+
+  #progreso {
+    padding: 10px;
+  }
+}
+
+
+.progreso-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+    font-weight: bold;
+}
+
+#inicio {
+  scroll-margin-top: 80px; /* ajusta según la altura de tu header */
+}
