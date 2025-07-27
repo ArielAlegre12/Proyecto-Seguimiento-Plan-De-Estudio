@@ -161,6 +161,11 @@ const planEstudio = {
                 { "codigo": "EXAG-676", "condicion": "aprobada" },
                 { "codigo": "EXAG-677", "condicion": "aprobada" }
               ] }
+            },
+            {
+              "codigo": "EXAG-544",
+              "nombre": "Inglés Técnico Informático (extracurricular)",
+              "correlativas": { "paraCursar": [], "paraAprobar": [] }
             }
           ]
         },
@@ -212,17 +217,33 @@ const planEstudio = {
             {
               "codigo": "EXAG-683",
               "nombre": "Ingeniería de Software II",
-              "correlativas": { "paraCursar": [], "paraAprobar": [] }
+              "correlativas": { "paraCursar": [
+                { "codigo": "EXAG-680", "condicion": "regular" },
+                { "codigo": "EXAG-677", "condicion": "aprobada" }
+              ], "paraAprobar": [
+                { "codigo": "EXAG-680", "condicion": "aprobada" }
+              ] }
             },
             {
               "codigo": "EXAG-684",
               "nombre": "Economía Aplicada",
-              "correlativas": { "paraCursar": [], "paraAprobar": [] }
+              "correlativas": { "paraCursar": [
+                { "codigo": "EXAG-680", "condicion": "regular" },
+                { "codigo": "EXAG-677", "condicion": "aprobada" }
+              ], "paraAprobar": [
+                { "codigo": "EXAG-680", "condicion": "aprobada" }
+              ] }
             },
             {
               "codigo": "EXAG-685",
               "nombre": "Teoría de la Computación",
-              "correlativas": { "paraCursar": [], "paraAprobar": [] }
+              "correlativas": { "paraCursar": [
+                { "codigo": "EXAG-17", "condicion": "regular" },
+                { "codigo": "EXAG-694", "condicion": "aprobada" }
+              ], "paraAprobar": [
+                { "codigo": "EXAG-17", "condicion": "aprobada" },
+                { "codigo": "EXAG-694", "condicion": "aprobada" }
+              ] }
             }
           ]
         },
@@ -232,17 +253,31 @@ const planEstudio = {
             {
               "codigo": "EXAG-686",
               "nombre": "Redes de Datos",
-              "correlativas": { "paraCursar": [], "paraAprobar": [] }
+              "correlativas": { "paraCursar": [
+                { "codigo": "EXAG-679", "condicion": "aprobada" }
+              ], "paraAprobar": [
+                { "codigo": "EXAG-679", "condicion": "aprobada" }
+              ] }
             },
             {
               "codigo": "EXAG-687",
               "nombre": "Bases de Datos II",
-              "correlativas": { "paraCursar": [], "paraAprobar": [] }
+              "correlativas": { "paraCursar": [
+                { "codigo": "EXAG-682", "condicion": "regular" },
+                { "codigo": "EXAG-680", "condicion": "aprobada" }
+              ], "paraAprobar": [
+                { "codigo": "EXAG-682", "condicion": "aprobada" },
+              ] }
             },
             {
               "codigo": "EXAG-688",
               "nombre": "Métodos Computacionales",
-              "correlativas": { "paraCursar": [], "paraAprobar": [] }
+              "correlativas": { "paraCursar": [
+                { "codigo": "EXAG-17", "condicion": "regular" },
+                { "codigo": "EXAG-65", "condicion": "aprobada" }
+              ], "paraAprobar": [
+                { "codigo": "EXAG-17", "condicion": "aprobada" },
+              ] }
             }
           ]
         }
@@ -257,12 +292,38 @@ const planEstudio = {
             {
               "codigo": "EXAG-689",
               "nombre": "Proyecto Final de Carrera",
-              "correlativas": { "paraCursar": [], "paraAprobar": [] }
+              "correlativas": { "paraCursar": [
+                { "codigo": "EXAG-686", "condicion": "regular" },
+                { "codigo": "EXAG-687", "condicion": "regular" },
+                { "codigo": "EXAG-683", "condicion": "aprobada" }
+              ], "paraAprobar": [
+                { "codigo": "EXAG-681", "condicion": "aprobada" },
+                { "codigo": "EXAG-17", "condicion": "aprobada" },
+                { "codigo": "EXAG-544", "condicion": "aprobada" },
+                { "codigo": "EXAG-683", "condicion": "aprobada" },
+                { "codigo": "EXAG-684", "condicion": "aprobada" },
+                { "codigo": "EXAG-685", "condicion": "aprobada" },
+                { "codigo": "EXAG-686", "condicion": "aprobada" },
+                { "codigo": "EXAG-687", "condicion": "aprobada" },
+                { "codigo": "EXAG-688", "condicion": "aprobada" },
+                { "codigo": "EXAG-689", "condicion": "aprobada" },
+                { "codigo": "EXAG-690", "condicion": "aprobada" },
+                { "codigo": "EXAG-691", "condicion": "aprobada" },
+                { "codigo": "EXAG-692", "condicion": "aprobada" },
+                { "codigo": "EXAG-693", "condicion": "aprobada" }
+              ] }
             },
             {
               "codigo": "EXAG-690",
               "nombre": "Auditoría y Seguridad Informática",
-              "correlativas": { "paraCursar": [], "paraAprobar": [] }
+              "correlativas": { "paraCursar": [
+                { "codigo": "EXAG-686", "condicion": "regular" },
+                { "codigo": "EXAG-687", "condicion": "regular" },
+                { "codigo": "EXAG-683", "condicion": "aprobada" }
+              ], "paraAprobar": [
+                { "codigo": "EXAG-686", "condicion": "aprobada" },
+                { "codigo": "EXAG-687", "condicion": "aprobada" }
+              ] }
             }
           ]
         },
@@ -282,7 +343,12 @@ const planEstudio = {
             {
               "codigo": "EXAG-698",
               "nombre": "Diseño Web Centrado en el Usuario (Optativa III)",
-              "correlativas": { "paraCursar": [], "paraAprobar": [] }
+              "correlativas": { "paraCursar": [
+                { "codigo": "EXAG-687", "condicion": "regular" },
+                { "codigo": "EXAG-683", "condicion": "aprobada" }
+              ], "paraAprobar": [
+                { "codigo": "EXAG-687", "condicion": "aprobada" }
+              ] }
             }
           ]
         }
