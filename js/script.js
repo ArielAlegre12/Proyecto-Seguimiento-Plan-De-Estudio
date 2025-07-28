@@ -224,8 +224,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         function formatCorrelativas(lista) {
             if (lista.length === 0) return "<em>No tiene correlativas</em>";
-            return lista.map(cor => `${cor.codigo} (${cor.condicion})`).join(", ");
+
+            return lista.map(cor => {
+                const materiaRelacionada = todasLasMaterias.find(m => m.codigo === cor.codigo);
+                const nombreMateria = materiaRelacionada ? materiaRelacionada.nombre : "Nombre no encontrado";
+                return `${cor.codigo} - ${nombreMateria} (${cor.condicion})`;
+            }).join(", ");
         }
+
 
         infoCorrelativas.innerHTML = `
             <p><strong>Correlativas para cursar:</strong> ${formatCorrelativas(paraCursar)}</p>
