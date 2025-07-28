@@ -29,12 +29,16 @@
 
         <section id="progreso">
             <h2>Progreso</h2>
-            <p class="explicacion">
-                Los porcentajes reflejan el avance basado en la cantidad de materias aprobadas, regulares o del título
-                intermedio.
-                No incluyen materias optativas ni otras variables.
-            </p>
 
+            <!-- Detalle de materias -->
+            <div id="detalle-materias" style="margin-bottom: 20px;">
+                <p><strong>Materias Aprobadas:</strong> <span id="count-aprobadas">0</span></p>
+                <p><strong>Promocionadas:</strong> <span id="count-promocionadas">0</span></p>
+                <p><strong>Por Examen Final:</strong> <span id="count-final">0</span></p>
+                <p><strong>Regulares:</strong> <span id="count-regulares">0</span></p>
+            </div>
+
+            <!-- Barras y porcentajes -->
             <div class="progreso-item">
                 <span>Total Aprobadas:</span>
                 <span id="porcentaje-aprobadas">0%</span>
@@ -51,25 +55,27 @@
                 <div id="barra-total"></div>
             </div>
 
+            <!-- Avance Título Intermedio -->
             <div class="progreso-item">
-                <span>Avance Título Intermedio:</span>
+                <span>Avance <strong>Analista Programador Universitario</strong>:</span>
                 <span id="porcentaje-intermedio">0%</span>
             </div>
             <div class="barra">
                 <div id="barra-intermedio"></div>
             </div>
 
-            <div id="detalles-progreso"></div>
-
+            <!-- Avance Título Completo -->
             <div class="progreso-item">
-                <span>Avance Total de la Carrera:</span>
-                <span id="porcentaje-total-carrera">0%</span>
+                <span>Avance <strong>Licenciatura en Sistemas de Información</strong>:</span>
+                <span id="porcentaje-licenciatura">0%</span>
             </div>
             <div class="barra">
-                <div id="barra-total-carrera"></div>
+                <div id="barra-licenciatura"></div>
             </div>
 
+            <div id="detalles-progreso"></div>
         </section>
+
 
     </main>
 

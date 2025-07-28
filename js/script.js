@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
     const container = document.getElementById("plan");
-
     let estadoMaterias = {};
 
     // Cargar estado previo desde localStorage
@@ -9,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
         estadoMaterias = JSON.parse(savedData);
     }
 
-    // Contar total materias
+    // Contar total de materias de la carrera
     let totalMaterias = 0;
     planEstudio.años.forEach(anio => {
         anio.cuatrimestres.forEach(cuatri => {
@@ -37,7 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 select.innerHTML = `
                     <option value="no_cursada">No cursada</option>
                     <option value="regular">Regular</option>
-                    <option value="aprobada">Aprobada</option>
+                    <option value="aprobada_final">Aprobada (Examen Final)</option>
+                    <option value="aprobada_promo">Promocionada</option>
                 `;
 
                 // Restaurar estado guardado
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     select.value = estadoMaterias[materia.codigo];
                 }
 
-                // Crear mensaje de error local
+                // Mensaje de error
                 const mensajeErrorLocal = document.createElement("div");
                 mensajeErrorLocal.classList.add("mensaje-error");
                 mensajeErrorLocal.style.minHeight = "18px";
@@ -60,7 +60,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (!cumpleCorrelativas(materia, nuevoEstado)) {
                         mensajeErrorLocal.textContent = `No cumplís las correlativas.`;
                         mensajeErrorLocal.style.visibility = "visible";
-
                         e.target.value = anteriorEstado; // revertir
 
                         clearTimeout(mensajeErrorLocal.timeoutId);
@@ -71,7 +70,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         return;
                     }
 
-                    // Si pasa validación
                     mensajeErrorLocal.style.visibility = "hidden";
                     estadoMaterias[materia.codigo] = nuevoEstado;
                     localStorage.setItem("estadoMaterias", JSON.stringify(estadoMaterias));
@@ -94,15 +92,15 @@ document.addEventListener("DOMContentLoaded", function () {
         if (nuevoEstado === "regular") {
             return materia.correlativas.paraCursar.every(req => {
                 const estadoReq = estadoMaterias[req.codigo];
-                if (req.condicion === "aprobada") return estadoReq === "aprobada";
-                if (req.condicion === "regular") return estadoReq === "regular" || estadoReq === "aprobada";
+                if (req.condicion === "aprobada") return estadoReq === "aprobada_final" || estadoReq === "aprobada_promo";
+                if (req.condicion === "regular") return estadoReq === "regular" || estadoReq.includes("aprobada");
                 return false;
             });
         }
-        if (nuevoEstado === "aprobada") {
+        if (nuevoEstado.includes("aprobada")) {
             return materia.correlativas.paraAprobar.every(req => {
                 const estadoReq = estadoMaterias[req.codigo];
-                return estadoReq === "aprobada";
+                return estadoReq.includes("aprobada");
             });
         }
         return true;
@@ -111,13 +109,29 @@ document.addEventListener("DOMContentLoaded", function () {
     // Cálculo de progreso
     function calcularProgreso() {
         let aprobadas = 0;
+        let promocionadas = 0;
+        let porFinal = 0;
         let regulares = 0;
 
         for (const estado of Object.values(estadoMaterias)) {
-            if (estado === "aprobada") aprobadas++;
-            else if (estado === "regular") regulares++;
+            if (estado === "aprobada_promo") {
+                aprobadas++;
+                promocionadas++;
+            } else if (estado === "aprobada_final") {
+                aprobadas++;
+                porFinal++;
+            } else if (estado === "regular") {
+                regulares++;
+            }
         }
 
+        // Actualizar contadores
+        document.getElementById("count-aprobadas").textContent = aprobadas;
+        document.getElementById("count-promocionadas").textContent = promocionadas;
+        document.getElementById("count-final").textContent = porFinal;
+        document.getElementById("count-regulares").textContent = regulares;
+
+        // Porcentajes
         const porcentajeAprobadas = ((aprobadas / totalMaterias) * 100).toFixed(2);
         const porcentajeCompletadas = (((aprobadas + regulares) / totalMaterias) * 100).toFixed(2);
 
@@ -125,22 +139,20 @@ document.addEventListener("DOMContentLoaded", function () {
         const aprobadasIntermedio = contarAprobadasHasta(planEstudio.tituloIntermedio.anio);
         const porcentajeIntermedio = ((aprobadasIntermedio / materiasIntermedio) * 100).toFixed(2);
 
-        // ✅ NUEVO: progreso total de la carrera (solo aprobadas)
-        const porcentajeTotalCarrera = ((aprobadas / totalMaterias) * 100).toFixed(2);
+        const porcentajeLicenciatura = ((aprobadas / totalMaterias) * 100).toFixed(2);
 
         // Actualizar barras
         document.getElementById("barra-aprobadas").style.width = `${porcentajeAprobadas}%`;
         document.getElementById("barra-total").style.width = `${porcentajeCompletadas}%`;
         document.getElementById("barra-intermedio").style.width = `${porcentajeIntermedio}%`;
-        document.getElementById("barra-total-carrera").style.width = `${porcentajeTotalCarrera}%`;
+        document.getElementById("barra-licenciatura").style.width = `${porcentajeLicenciatura}%`;
 
         // Actualizar texto
         document.getElementById("porcentaje-aprobadas").textContent = `${porcentajeAprobadas}%`;
         document.getElementById("porcentaje-total").textContent = `${porcentajeCompletadas}%`;
         document.getElementById("porcentaje-intermedio").textContent = `${porcentajeIntermedio}%`;
-        document.getElementById("porcentaje-total-carrera").textContent = `${porcentajeTotalCarrera}%`;
+        document.getElementById("porcentaje-licenciatura").textContent = `${porcentajeLicenciatura}%`;
     }
-
 
     function contarMateriasHasta(anioLimite) {
         let count = 0;
@@ -158,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (anio.anio <= anioLimite) {
                 anio.cuatrimestres.forEach(cuatri => {
                     cuatri.materias.forEach(m => {
-                        if (estadoMaterias[m.codigo] === "aprobada") count++;
+                        if (estadoMaterias[m.codigo]?.includes("aprobada")) count++;
                     });
                 });
             }
@@ -169,14 +181,14 @@ document.addEventListener("DOMContentLoaded", function () {
     calcularProgreso();
 });
 
-
+// Cerrar menú en móviles al hacer clic en un link
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
         document.querySelector('.nav-links').classList.remove('active');
     });
 });
 
-
+// Cambiar estilo del header al hacer scroll
 window.addEventListener('scroll', function () {
     const header = document.querySelector('header');
     if (window.scrollY > 10) {
