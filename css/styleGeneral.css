@@ -204,3 +204,10 @@ a{
   color: inherit; /* Hereda el color del contenedor */
   text-decoration: none; /* Sin subrayado */
 }
+
+#barra-licenciatura {
+  background: #9c27b0; /* morado para diferenciar */
+  height: 100%;
+  width: 0;
+  transition: width 0.6s ease;
+}
